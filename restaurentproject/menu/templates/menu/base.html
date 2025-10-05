@@ -1,0 +1,326 @@
+{% load static %} 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Felamingo</title> 
+
+<!-- استایل های هدر -->
+
+    <style>
+        
+        header{
+            background-color: #e62498;
+            position: absolute;
+            height: 80px;
+            top: 0;
+            right: 0;
+            left: 0;
+        }
+        .percon_color{
+            color: white;
+            font-size: 22px; 
+        }
+        .percon_div{
+            color: #e62498;
+            background-color:#e62498 ;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            border-width: 3px;
+            border-style: solid;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            border-width:1px;
+            margin-left: 20px; 
+            align-items: center;
+            justify-content: center;
+            display: flex;
+        }
+        .felamingo_picture{
+            border-radius: 50%;
+            width: 40px;
+            border-style: none;
+        }
+        .felamingi_div{
+            background-color: #e62498;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            margin-left: 1400px;
+            margin-top: -45px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+        }
+        .text_felamingo{
+            color: white;
+            font-size: 13px;
+            font-family: Helvetica;
+            font-weight: 560;
+            margin-left: 1340px;
+            margin-top: -41px;
+            display: inline-block;
+            position: absolute;
+        }
+        .text{
+            font-weight: 450;
+            color: #dfb9cf;
+            font-size: 14px;
+            margin-left: 1334px;
+            margin-top: -25px;
+            display: inline-block;
+            position: absolute;
+        }
+        .hamburger_button{
+            background-color: #e62498;
+            border-color: #e62498;
+            border-style: solid;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            font-size: 20px;
+            color: white;
+            margin-left: 1480px;
+            margin-top: -40px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+            display: inline-block;
+            position: absolute;
+        }
+        .main_picture{
+            width: 100%;              /* عکس کامل عرض صفحه */
+            height: auto;             /* نسبت تصویر حفظ میشه */
+            position: relative;
+            top: -227px;
+        }
+        .main_picture_wrapper{
+            height: 35vh;             /* ارتفاع دلخواه ظرف عکس */
+            overflow: hidden;         /* فقط بخشی از عکس دیده بشه */
+            margin-top: 80px;         /* به اندازه ارتفاع هدر */
+            position: relative;
+            border-radius: 13px;
+        }
+
+/* ------------------------------------ */
+        
+
+
+        footer {
+            background-color: #f2f2f2;
+            height: 70px;
+            text-align: center;
+            padding-top: 25px;
+            font-size: large;
+            margin-top: auto;
+            flex-shrink: 0;
+        }
+
+
+
+/* --------------------------------------- */
+
+
+
+
+
+/* --------------------------------------- */
+
+
+.page-body {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+.main_picture_wrapper {
+    flex-shrink: 0;
+}
+
+
+
+
+.hamburger_button {
+  position: fixed;
+  top: 60px;
+  right: 20px;
+  background-color: #e62498;
+  border: none;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  color: white;
+  font-size: 20px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+  z-index: 1001;
+}
+
+/* منوی سایدبار */
+.sidebar_menu {
+  position: fixed;
+  top: 0;
+  right: -300px; /* اول مخفیه */
+  width: 300px;
+  height: 100%;
+  background-color: #fff;
+  box-shadow: -2px 0 8px rgba(0,0,0,0.3);
+  padding: 20px;
+  transition: right 0.3s ease;
+  z-index: 1000;
+}
+
+/* وقتی فعال میشه */
+.sidebar_menu.active {
+  right: 0;
+}
+
+/* دکمه بستن × */
+.close_btn {
+  font-size: 28px;
+  cursor: pointer;
+  color: #e62498;
+  display: block;
+  text-align: left;
+  margin-bottom: 20px;
+}
+
+/* استایل لیست */
+.sidebar_menu ul {
+    margin-top: 50px;
+    list-style: none;
+    padding: 0;
+}
+
+.sidebar_menu li {
+  margin: 15px 0;
+  padding-bottom: 10px;
+  border-bottom: 1px solid #e0e0e0;
+}
+
+.sidebar_menu li:last-child {
+  border-bottom: none; /* برای آیتم آخر خط نیاد */
+}
+
+.sidebar_menu a {
+  text-decoration: none;
+  color: #e62498;
+  font-size: 18px;
+  font-weight: bold;
+}
+
+
+
+
+
+
+/* --------------------------------------- */
+
+{% block style-content %}
+
+{% endblock %}
+
+    </style>
+
+<!-- کدای فریم ورک کدای پایینن -->
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-SgOJa3DmI69IUzQ2PVdRZhwQ+dy64/BUtbMJw1MZ8t5HZApcHrRKUc4W0kG879m7" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/js/bootstrap.bundle.min.js" integrity="sha384-k6d4wzSIapyDyv1kpU366/PK5hCdSbCRGRCMv+eplOQJWyd1fbcAu9OCUj5zNLiq" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+
+</head>
+
+<body class="page-body">
+
+
+<!-- کل هدر کدای زیره -->
+
+    <header>
+        <br>
+        <div class="percon_div">
+            <a href="{% if user.is_authenticated %}register/{% else %}/login/{% endif %}"> 
+                <i class="bi bi-person-circle percon_color"></i> 
+            </a>
+        </div>
+        <div class="felamingi_div">
+            <img src="{% static 'images/57ab3c9f9def4ef88780f002c1edd23f.png' %}" alt="felamingo_picture" class="felamingo_picture">
+        </div> 
+        <h5 class="text_felamingo">Felamingo</h5>
+        <p class="text">Restaurant</p>
+        <button id="hamburgerBtn" class="bi bi-list hamburger_button"></button>
+
+        <div id="sidebarMenu" class="sidebar_menu">
+            <!-- <span id="closeSidebar" class="close_btn">&times;</span> -->
+            <ul>
+                <li><a href="#" id="homeLink">Home</a></li>
+                <li><a href="#" id="authLink">Authentication</a></li>
+                <li><a href="#" id="aboutLink">About us</a></li>
+                <li><a href="#" id="contactLink">Contact</a></li> 
+            </ul>
+        </div>
+
+        <br>
+    </header>
+
+<!-- عکس اصلی فلامینگو بزرگ مربوط به کد زیره -->
+    <div class="main_picture_wrapper">
+        <img src="{% static 'images/8885b9930acd4459972bc4e73ca7cbbb.jpg' %}" alt="felamingo_background" class="main_picture">
+    </div> 
+    
+
+<script>
+  const btn = document.getElementById("hamburgerBtn");
+  const menu = document.getElementById("sidebarMenu");
+
+  // باز و بسته شدن منو با خود دکمه
+  btn.addEventListener("click", () => {
+    menu.classList.toggle("active");
+  });
+
+  // هندل کلیک روی لینک‌ها
+  document.addEventListener("click", function (e) {
+    if (e.target && e.target.id === "homeLink") {
+      e.preventDefault();
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    }
+
+    if (e.target && e.target.id === "authLink") {
+      e.preventDefault();
+
+      const isAuthenticated = document.cookie
+        .split(";")
+        .some((cookie) => cookie.trim().startsWith("sessionid="));
+
+      if (isAuthenticated) {
+        window.location.href = "/login/";
+      } else {
+        window.location.href = "/register/";
+      }
+    }
+  });
+</script>
+
+
+
+
+
+
+
+{% block content %}
+
+{% endblock %}
+
+</body> 
+
+{% block food-items %}
+
+{% endblock %}
+<br>
+<br>
+
+
+
+<footer>
+  <p>© 2025 Felamingo. All rights reserved.</p>
+</footer>
+
+<!-- background-color: #f2f2f2; padding: 50px; height: 50px; -->
+
+
+</html>
