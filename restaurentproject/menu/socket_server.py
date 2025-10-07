@@ -40,8 +40,9 @@ def start_server():
                     message = data.decode().strip()
                     print(f"[RECEIVED] {message}")
 
+
                     if message.startswith("ADD_PRODUCT|"):
-                        parts = message.split("|")
+                        parts = message.split("|") 
                         if len(parts) == 5:
                             name = parts[1]
                             description = parts[2]
@@ -63,6 +64,44 @@ def start_server():
                             response = "Invalid ADD_PRODUCT format!"
 
                         client_socket.send(response.encode())
+
+
+                        # Remove Product
+                    elif message.startswith("REMOVE_PRODUCT|"):
+                        print("in REMOVE_PRODUCT")
+                        parts = message.split("|") 
+                        if len(parts) == 2:
+                            name = parts[1]
+                            try:
+                                with transaction.atomic():
+                                    product = Product.objects.get(name=name) 
+                                    product.delete()
+                                response = f"Product '{name}' removed successfully!"
+                            except Product.DoesNotExist:
+                                response = f"Product '{name}' not found!"
+                        else:
+                            response = "Invalid REMOVE_PRODUCT format!"
+
+                        client_socket.send(response.encode())
+
+
+                    
+                        # Get List
+                    elif message == "GET_LIST":
+                        products = Product.objects.all()
+                        if not products.exists():
+                            response = "No products available."
+                        else:
+                            response_lines = []
+                            for p in products:
+                                response_lines.append(f"{p.name} - {p.category.name} - ${p.price:.2f}")
+                            response = "\n".join(response_lines)
+
+                        client_socket.send(response.encode())
+                    else: 
+                        response = "Unknown command!"
+                        client_socket.send(response.encode())
+
 
                 except Exception as e:
                     print(f"[ERROR] {e}")
